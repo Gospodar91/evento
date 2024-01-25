@@ -9,14 +9,14 @@ export default function Home() {
       </h1>
       <p className="mt-12 mb-7 text-2xl lg:text-3xl opacity-75">
         Browse more than{" "}
-        <span className="font-bold italic underline text-[#a4f839]">
+        <span className="font-bold italic underline   text-accent">
           10, 000 events
         </span>{" "}
         around you{" "}
       </p>
       <form className="w-full sm:w-[580px]">
         <input
-          className="w-full outline-none h-16 rounded-lg bg-white/[7%] ring-[#a4f839]/50 px-6 transition focus:bg-white/10 focus:ring-2"
+          className="w-full outline-none h-16 rounded-lg bg-white/[7%] ring-accent/50 px-6 transition focus:bg-white/10 focus:ring-2"
           placeholder="Seacrh events in any city"
           spellCheck={false}
         />
