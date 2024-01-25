@@ -589,9 +589,6 @@ video {
 .mt-auto {
   margin-top: auto;
 }
-.mb-0 {
-  margin-bottom: 0px;
-}
 .flex {
   display: flex;
 }
@@ -642,6 +639,9 @@ video {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -675,6 +675,14 @@ video {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 .pt-36 {
   padding-top: 9rem;
