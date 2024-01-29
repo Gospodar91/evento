@@ -1,5 +1,6 @@
-import H1 from "@/app/components/H1";
-import { TEventoEvent } from "@/app/lib";
+import H1 from "@/components/H1";
+import Eventlist from "@/components/eventList";
+import { TEventoEvent } from "@/lib/types";
 
 type TCity = {
   params: {
@@ -8,22 +9,20 @@ type TCity = {
 };
 
 export default async function CityEvents({ params }: TCity) {
+  const { city } = params;
   const response = await fetch(
-    "https://bytegrad.com/course-assets/projects/evento/api/events?city=austin"
+    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
   );
   const events: TEventoEvent[] = await response.json();
 
-  const { city } = params;
   return (
     <main className="flex py-24 px-[20px] flex-col items-center">
-      <H1>
+      <H1 className="mb-28">
         {city === "all-events"
           ? "All Events"
           : `Events in ${city.charAt(0).toUpperCase() + city.slice(1)}`}
       </H1>
-      {events.map((event) => {
-        return <section key={event.id}>{event.name}</section>;
-      })}
+      <Eventlist events={events} />
     </main>
   );
 }

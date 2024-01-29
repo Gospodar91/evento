@@ -1,3 +1,63 @@
-export default function event() {
-  return <main>Event</main>;
+import H1 from "@/components/H1";
+import { TEventoEvent } from "@/lib/types";
+import Image from "next/image";
+type TEventPage = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Event({ params }: TEventPage) {
+  const { slug } = params;
+  const response = await fetch(
+    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
+  );
+  const event: TEventoEvent = await response.json();
+
+  return (
+    <main>
+      <section className="relative  overflow-hidden flex justify-center items-center py-14  md:px-20">
+        <Image
+          src={event.imageUrl}
+          alt="back_image"
+          fill
+          quality={50}
+          priority
+          sizes="(max-width:1280px):100vw,1280px"
+          className=" blur-3xl object-cover z-0"
+        />
+
+        <div className="relative z-1 flex  gap-6 lg:gap-16 flex-col lg:flex-row">
+          {" "}
+          <Image
+            alt="main_image"
+            src={event.imageUrl}
+            width={300}
+            height={201}
+            className=" rounded-xl border-2 border-white/50 object-cover"
+          />{" "}
+          <div className="flex flex-col">
+            <p className=" text-white/75">
+              {new Date(event.date).toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "long",
+                weekday: "long",
+              })}
+            </p>
+
+            <H1 className="mt-1 mb-2 text-white/75 whitespace-nowrap lg:text-5xl">
+              {event.name}
+            </H1>
+            <p className=" text-white/75  whitespace-nowrap text-xl">
+              Oganized by{" "}
+              <span className=" italic"> {event.organizerName}</span>
+            </p>
+            <button className="bg-white/20 text-lg capitalize  w-[95vw] sm:w-full py-2 rounded-md border-2 mt-5 lg:mt-auto border-white/10 hover:scale-105 active:scale-[1.02] transition focus:scale-105">
+              Get tickets
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
