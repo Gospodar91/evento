@@ -52,12 +52,38 @@ export default async function Event({ params }: TEventPage) {
               Oganized by{" "}
               <span className=" italic"> {event.organizerName}</span>
             </p>
-            <button className="bg-white/20 text-lg capitalize  w-[95vw] sm:w-full py-2 rounded-md border-2 mt-5 lg:mt-auto border-white/10 hover:scale-105 active:scale-[1.02] transition focus:scale-105">
+            <button className="bg-white/20 text-lg capitalize  w-[95vw] sm:w-full py-2 rounded-md border-2 mt-5 lg:mt-auto border-white/10 hover-effect focus:scale-105">
               Get tickets
             </button>
           </div>
         </div>
       </section>
+      <div className=" text-center py-16 px-5">
+        <Section>
+          <SectionHeading> About this event </SectionHeading>
+          <SectionContent>{event.description}</SectionContent>
+        </Section>
+        <Section>
+          <SectionHeading> Location </SectionHeading>
+          <SectionContent>{event.location}</SectionContent>
+        </Section>
+      </div>
     </main>
+  );
+}
+
+function Section({ children }: { children: React.ReactNode }) {
+  return <section className="mb-12">{children}</section>;
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return <h2 className=" text-2xl">{children}</h2>;
+}
+
+function SectionContent({ children }: { children: React.ReactNode }) {
+  return (
+    <p className=" max-w-4xl mx-auto leading-8 text-lg text-white/75">
+      {children}
+    </p>
   );
 }

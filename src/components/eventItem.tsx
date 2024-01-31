@@ -12,7 +12,7 @@ export default function EventItem({ event }: EventoItemProps) {
       className="h-[380px] max-w-[500px]  flex-1 basis-80 rounded-xl "
       href={`/event/${event.slug}`}
     >
-      <section className="flex  flex-col  items-center bg-white/[3%]  overflow-hidden relative w-full h-full hover:scale-105 transition active:scale-[1.02]">
+      <section className="flex  flex-col  items-center bg-white/[3%]  overflow-hidden relative w-full h-full hover-effect">
         <Image
           src={event.imageUrl}
           alt={event.name}

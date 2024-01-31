@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hover-effect {
+  @apply hover:scale-105 transition active:scale-[1.02];
+}
