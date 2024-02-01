@@ -1,4 +1,5 @@
 import H1 from "@/components/H1";
+import { sleep } from "@/lib/cn";
 import { TEventoEvent } from "@/lib/types";
 import Image from "next/image";
 type TEventPage = {
@@ -7,7 +8,8 @@ type TEventPage = {
   };
 };
 
-export default async function Event({ params }: TEventPage) {
+export default async function EventPage({ params }: TEventPage) {
+  await sleep();
   const { slug } = params;
   const response = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
