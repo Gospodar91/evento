@@ -4,7 +4,7 @@ import Logo from "./logo";
 import { clsx } from "clsx";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { cn } from "../lib/cn";
+import { cn } from "../lib/utils";
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
   },
   {
     name: "All Events",
-    path: "/events/all-events",
+    path: "/events/all",
   },
 ];
 

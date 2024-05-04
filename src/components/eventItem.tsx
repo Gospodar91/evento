@@ -1,16 +1,34 @@
-import { TEventoEvent } from "@/lib/types";
+"use client";
+import { EventoEvent } from "@prisma/client";
+import { motion, useTransform, useScroll } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
 
 type EventoItemProps = {
-  event: TEventoEvent;
+  event: EventoEvent;
 };
-
+const MotionLink = motion(Link);
 export default function EventItem({ event }: EventoItemProps) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.5 1"],
+  });
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+
   return (
-    <Link
+    <MotionLink
+      ref={ref}
       className="h-[380px] max-w-[500px]  flex-1 basis-80 rounded-xl "
       href={`/event/${event.slug}`}
+      style={{
+        //@ts-ignore
+        scale: scaleProgress,
+        //@ts-ignore
+        opacity: opacityProgress,
+      }}
     >
       <section className="flex  flex-col  items-center bg-white/[3%]  overflow-hidden relative w-full h-full hover-effect">
         <Image
@@ -38,6 +56,6 @@ export default function EventItem({ event }: EventoItemProps) {
           </p>
         </section>
       </section>
-    </Link>
+    </MotionLink>
   );
 }

@@ -1,28 +1,35 @@
 import H1 from "@/components/H1";
 import Eventlist from "@/components/eventList";
-import { TEventoEvent } from "@/lib/types";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { capitalize } from "@/lib/utils";
+import { Metadata } from "next";
 
-type TCity = {
+type Props = {
   params: {
     city: string;
   };
 };
 
-export default async function CityEvents({ params }: TCity) {
+export function generateMetadata({ params }: Props): Metadata {
+  const city = params.city;
+  return {
+    title: city === "all" ? "All events" : `Events in  ${capitalize(city)}`,
+  };
+}
+
+export default async function CityEvents({ params }: Props) {
   const { city } = params;
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
-  );
-  const events: TEventoEvent[] = await response.json();
 
   return (
     <main className="flex py-24 px-[20px] flex-col items-center">
       <H1 className="mb-28">
-        {city === "all-events"
-          ? "All Events"
-          : `Events in ${city.charAt(0).toUpperCase() + city.slice(1)}`}
+        {city === "all" ? "All Events" : `Events in ${capitalize(city)}`}
       </H1>
-      <Eventlist events={events} />
+      <Suspense fallback={<Loading />}>
+        {" "}
+        <Eventlist city={city} />
+      </Suspense>
     </main>
   );
 }
