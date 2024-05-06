@@ -3,4 +3,7 @@
 /.pnp
 .pnp.js
 /.vscode
+# misc
+.env*.local
 .env
+.vercel
