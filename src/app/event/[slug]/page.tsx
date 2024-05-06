@@ -1,5 +1,6 @@
+import "server-only";
 import H1 from "@/components/H1";
-import { getAllEvents, sleep } from "@/lib/utils";
+import { getAllEvents } from "@/lib/server-utils";
 import { EventoEvent } from "@prisma/client";
 import Image from "next/image";
 import { Metadata } from "next";

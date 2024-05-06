@@ -1,5 +1,6 @@
+import "server-only";
 import EventItem from "./eventItem";
-import { getEvents } from "@/lib/utils";
+import { getEvents } from "@/lib/server-utils";
 import PaginationControls from "./paginationControls";
 
 type TEventProps = {
