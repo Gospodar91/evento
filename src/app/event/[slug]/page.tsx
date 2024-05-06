@@ -9,6 +9,7 @@ type Props = {
   };
 };
 
+//Static pre-render of popular routes
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = params;
   const event: EventoEvent = await getAllEvents(slug);
@@ -16,6 +17,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: event.name,
   };
+}
+
+export async function generateStaticParams() {
+  return [
+    {
+      slug: "comedy-extravaganza",
+    },
+    { slug: "dj-practice-session" },
+  ];
 }
 
 export default async function EventPage({ params }: Props) {
